@@ -1,0 +1,44 @@
+<div class="mx-auto mt-6 max-w-sm sm:mt-16">
+  <h1 class="text-center text-2xl font-semibold text-rose-800">Salon Manager</h1>
+  <p class="mt-1 text-center text-sm text-stone-500">Zaloguj się, aby zobaczyć zadania</p>
+
+  <form class="sm-card mt-6 space-y-4" (ngSubmit)="submit()">
+    <div>
+      <label class="sm-label" for="email">E-mail</label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        class="sm-input"
+        autocomplete="username"
+        inputmode="email"
+        required
+        [(ngModel)]="email"
+      />
+    </div>
+    <div>
+      <label class="sm-label" for="password">Hasło</label>
+      <input
+        id="password"
+        name="password"
+        type="password"
+        class="sm-input"
+        autocomplete="current-password"
+        required
+        [(ngModel)]="password"
+      />
+    </div>
+
+    @if (error()) {
+      <p class="sm-alert" role="alert">{{ error() }}</p>
+    }
+
+    <button type="submit" class="sm-btn w-full" [disabled]="busy() || !email || !password">
+      {{ busy() ? 'Logowanie…' : 'Zaloguj się' }}
+    </button>
+  </form>
+
+  <p class="mt-4 text-center text-xs text-stone-500">
+    Konta zakłada kierownik salonu. Jeśli nie masz dostępu, poproś o założenie konta.
+  </p>
+</div>
